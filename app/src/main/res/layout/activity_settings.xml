@@ -10,28 +10,60 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.craig.test.SettingsActivity">
 
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextPeriod1"
+        android:layout_width="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/editTextPeriod2"
+        android:layout_alignStart="@+id/editTextPeriod2" />
     <TextView
         android:text="Period 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView1"
         android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="Period 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editTextPeriod1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="51dp"
-        android:id="@+id/textView" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_height="wrap_content"
         android:inputType="text"
         android:text="Name"
         android:ems="10"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:id="@+id/editTextPeriod1"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_width="wrap_content" />
+        android:id="@+id/editTextPeriod2"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/editTextPeriod2"
+        android:layout_alignStart="@+id/editTextPeriod2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/saveButton" />
+
 </RelativeLayout>
