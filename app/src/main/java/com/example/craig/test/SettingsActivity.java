@@ -34,9 +34,9 @@ public class SettingsActivity extends AppCompatActivity {
         inputP1.setText(p1);
         inputP2.setText(p2);
         inputP3.setText(p3);
-        inputP3.setText(p4);
-        inputP3.setText(p5);
-        inputP3.setText(p6);
+        inputP4.setText(p4);
+        inputP5.setText(p5);
+        inputP6.setText(p6);
 
 
         Button save = (Button)(findViewById(R.id.saveButton));
