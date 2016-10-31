@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     static ImageAdapter imageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("NoteLogger");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         String p5 = sharedPref.getString("period5", "");
         String p6 = sharedPref.getString("period6", "");
 
-        String[] items = new String[]{p1, p2, p3,p4,p5,p6};
+        String[] items = new String[]{p1, p2, p3, p4, p5, p6,};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         periodSpinner.setAdapter(adapter);
     }

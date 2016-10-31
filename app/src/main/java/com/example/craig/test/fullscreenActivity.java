@@ -10,6 +10,7 @@ public class fullscreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Fullscreen View");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
 

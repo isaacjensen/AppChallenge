@@ -21,26 +21,50 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/editTextPeriod2"
         android:layout_alignStart="@+id/editTextPeriod2" />
-    <TextView
-        android:text="Period 1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
 
-    <TextView
-        android:text="Period 2"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="18dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editTextPeriod1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextPeriod3"
+        android:layout_below="@+id/editTextPeriod2"
+        android:layout_alignLeft="@+id/editTextPeriod2"
+        android:layout_alignStart="@+id/editTextPeriod2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextPeriod4"
+        android:layout_below="@+id/editTextPeriod3"
+        android:layout_alignLeft="@+id/editTextPeriod3"
+        android:layout_alignStart="@+id/editTextPeriod3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextPeriod6"
+        android:layout_below="@+id/editTextPeriod5"
+        android:layout_alignLeft="@+id/editTextPeriod5"
+        android:layout_alignStart="@+id/editTextPeriod5" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextPeriod5"
+        android:layout_below="@+id/editTextPeriod4"
+        android:layout_alignLeft="@+id/editTextPeriod4"
+        android:layout_alignStart="@+id/editTextPeriod4" />
 
     <EditText
         android:layout_height="wrap_content"
@@ -49,21 +73,75 @@
         android:ems="10"
         android:id="@+id/editTextPeriod2"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_alignTop="@+id/textView2"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_below="@+id/editTextPeriod1"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:text="Period 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editTextPeriod1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Period 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editTextPeriod2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="Period 4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/editTextPeriod3"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:text="Period 5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editTextPeriod4"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:text="Period 6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/editTextPeriod5"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:text="Period 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/editTextPeriod2"
+        android:layout_toStartOf="@+id/editTextPeriod2" />
 
     <Button
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/saveButton"
+        android:elevation="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/editTextPeriod2"
-        android:layout_alignStart="@+id/editTextPeriod2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:id="@+id/saveButton" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
