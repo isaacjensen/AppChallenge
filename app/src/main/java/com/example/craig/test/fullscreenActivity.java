@@ -16,7 +16,9 @@ public class fullscreenActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
-            Bitmap image = (Bitmap) bundle.get("bitmap");
+            String path = (String) bundle.get("path");
+
+            Bitmap image = MainActivity.getPic(path, 800, 800);
             ImageView view = (ImageView)(findViewById(R.id.imageView));
             view.setImageBitmap(image);
         }

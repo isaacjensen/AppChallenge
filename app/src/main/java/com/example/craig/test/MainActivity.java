@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +40,7 @@ import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, fullscreenActivity.class);
-                intent.putExtra("bitmap", imageAdapter.images.get(position));
+
+                String path = imageAdapter.images.get(position).Path;
+
+                intent.putExtra("path", path);
                 startActivity(intent);
             }
         });
@@ -124,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-    private Bitmap getPic(String path, int targetW, int targetH) {
+    public static Bitmap getPic(String path, int targetW, int targetH) {
         // Get the dimensions of the View
 
         // Get the dimensions of the bitmap
@@ -141,11 +148,40 @@ public class MainActivity extends AppCompatActivity {
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
         bmOptions.inPurgeable = true;
+        Bitmap image = BitmapFactory.decodeFile(path, bmOptions);
+        try{
+        ExifInterface ei = new ExifInterface(path);
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
 
-        return BitmapFactory.decodeFile(path, bmOptions);
+        switch(orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return rotateImage(image, 90);
 
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return rotateImage(image, 180);
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return rotateImage(image, 270);
+
+            case ExifInterface.ORIENTATION_NORMAL:
+            default:
+                return image;
+        }
+
+
+
+        }catch (IOException err){
+            return image;
+        }
     }
 
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix,
+                true);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
@@ -158,16 +194,27 @@ public class MainActivity extends AppCompatActivity {
 
             editor.putString(mCurrentPhotoPath, mCurrentPhotoPath);
             editor.commit();
-            imageAdapter.images.add(bitmap);
+            imageAdapter.addBitmap(bitmap, mCurrentPhotoPath);
             GridView grid = (GridView)(findViewById(R.id.imageGrid));
             grid.invalidateViews();
         }
     }
     public class ImageAdapter extends BaseAdapter {
         private Context mContext;
+        public class BitmapWithPath {
+            public Bitmap Bitmap;
+            public String Path;
+            public BitmapWithPath(Bitmap bitmap, String path) {
+                this.Bitmap = bitmap;
+                this.Path = path;
+            }
+        }
+        public void addBitmap(Bitmap bitmap, String path) {
+            images.add(new BitmapWithPath(bitmap, path));
+        }
 
         // Keep all Images in array
-        public ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+        public ArrayList<BitmapWithPath> images = new ArrayList<>();
 
         public void setPeriod (int period) {
             images.clear();
@@ -177,8 +224,10 @@ public class MainActivity extends AppCompatActivity {
 
             for(Map.Entry<String,?> entry : keys.entrySet()){
                 //Log.d("map values",entry.getKey() + ": " + entry.getValue().toString());
-                Bitmap myBitmap = getPic(entry.getKey(), 200, 200);
-                images.add(myBitmap);
+                Bitmap image = getPic(entry.getKey(), 100, 100);
+
+
+                images.add(new BitmapWithPath(image, entry.getKey()));
             }
             GridView grid = (GridView)(findViewById(R.id.imageGrid));
             grid.invalidateViews();
@@ -216,7 +265,9 @@ public class MainActivity extends AppCompatActivity {
             else {
                 imageView = (ImageView) convertView;
             }
-            imageView.setImageBitmap(images.get(position));
+            BitmapWithPath bitmap = images.get(position);
+            imageView.setImageBitmap(bitmap.Bitmap);
+
             //imageView.setLayoutParams(new GridView.LayoutParams(70, 70));
             return imageView;
         }
