@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     static ImageAdapter imageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("NoteLogger");
+        setTitle("NoteLocker");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
+        //ceates and backupimage  of teh file
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         bmOptions.inPurgeable = true;
         Bitmap image = BitmapFactory.decodeFile(path, bmOptions);
         try{
-        ExifInterface ei = new ExifInterface(path);
+        ExifInterface ei = new ExifInterface(path);//detecting camera hardware rotations. Galaxy S6 for example
         int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_UNDEFINED);
 
